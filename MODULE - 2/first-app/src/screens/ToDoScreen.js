@@ -14,12 +14,19 @@ const ToDoScreen = () => {
                     {
                         title: "Go to gym",
                         description: "Going to gym is good for muscel growth.",
+                        createdDate: new Date(),
                     },
                     ]);
-                }} className="ui secondary button">Add Task</button>
-                {taskList.map((task) => (
-                    <Task />
-                ))}
+                }} className="ui secondary button">
+                    Add Task
+                </button>
+                <section>
+                    <div class="ui cards">
+                        {taskList.map((task, index) => (
+                            <Task task={task} key={index} />
+                        ))}
+                    </div>
+                </section>
             </div>
         </div>
     );
