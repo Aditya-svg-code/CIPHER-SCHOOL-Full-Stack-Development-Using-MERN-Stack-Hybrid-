@@ -1,28 +1,28 @@
-import { Component } from "react";
+import { useState } from "react";
+import Task from "../components/Task";
 
-class ToDoScreen extends Component {
+const ToDoScreen = () => {
 
-    state = {
-        taskCount: 0,
-    };
+    const [taskList, setTaskList] = useState([]);
 
-    render() {
-        return (
-            <div className="screen">
-                <h1 className="ui heading center">To Do List</h1>
-                <div>
-                    <button onClick={(e) => {
-                        this.setState({
-                            ...this.state,
-                            taskCount: this.state.taskCount + 1,
-                        });
-                        console.log(this.taskCount);
-                    }} className="ui secondary button">Add Task</button>
-                    <p>The number of Tasks are : {this.state.taskCount}</p>
-                </div>
+    return (
+        <div className="screen">
+            <h1 className="ui heading center">To Do List</h1>
+            <div>
+                <button onClick={(e) => {
+                    setTaskList([...taskList,
+                    {
+                        title: "Go to gym",
+                        description: "Going to gym is good for muscel growth.",
+                    },
+                    ]);
+                }} className="ui secondary button">Add Task</button>
+                {taskList.map((task) => (
+                    <Task />
+                ))}
             </div>
-        );
-    }
+        </div>
+    );
 }
 
 export default ToDoScreen;
