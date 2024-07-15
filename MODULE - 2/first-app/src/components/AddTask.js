@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const AddTask = () => {
+const AddTask = ({ onSubmit }) => {
 
     const [task, setTask] = useState({
         title: "",
@@ -17,6 +17,7 @@ const AddTask = () => {
     let onFormSubmit = (e) => {
         e.preventDefault();
         console.log(task);
+        onSubmit(task);
     };
 
     return (
@@ -30,7 +31,8 @@ const AddTask = () => {
                             spellCheck={false}
                             data-ms-editor={true}
                             placeholder="Task Title" name="title"
-                            onChange={handleInputChange} />
+                            onChange={handleInputChange}
+                            value={task.title} />
                     </div>
                     <div className="field">
                         <label>Description</label>
@@ -38,7 +40,8 @@ const AddTask = () => {
                             spellCheck={false}
                             data-ms-editor={true}
                             placeholder="Task Description" name="description"
-                            onChange={handleInputChange} />
+                            onChange={handleInputChange}
+                            value={task.description} />
                     </div>
                     <button type="submit" className="ui primary button">
                         Submit
