@@ -6,6 +6,10 @@ const ToDoScreen = () => {
 
     const [taskList, setTaskList] = useState([]);
 
+    let addNewTask = (task) => {
+        setTaskList([...taskList, { ...task, createdDate: new Date() }]);
+    };
+
     return (
         <>
             <div className="screen">
