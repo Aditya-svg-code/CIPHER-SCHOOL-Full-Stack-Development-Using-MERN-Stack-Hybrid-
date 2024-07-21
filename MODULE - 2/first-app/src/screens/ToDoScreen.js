@@ -1,14 +1,13 @@
-import { useState } from "react";
+import { useContext } from "react";
 import Task from "../components/Task";
 import AddTask from "../components/AddTask";
+import TaskContext from "../context/TaskContext";
+import { useNavigate } from "react-router-dom";
 
 const ToDoScreen = () => {
 
-    const [taskList, setTaskList] = useState([]);
-
-    let addNewTask = (task) => {
-        setTaskList([...taskList, { ...task, createdDate: new Date() }]);
-    };
+    const { taskList } = useContext(TaskContext);
+    const navigate = useNavigate();
 
     return (
         <>
@@ -16,13 +15,7 @@ const ToDoScreen = () => {
                 <h1 className="ui heading center">To Do List</h1>
                 <div>
                     <button onClick={(e) => {
-                        setTaskList([...taskList,
-                        {
-                            title: "Go to gym",
-                            description: "Going to gym is good for muscel growth.",
-                            createdDate: new Date(),
-                        },
-                        ]);
+                        navigate("/add-task");
                     }} className="ui secondary button">
                         Add Task
                     </button>
@@ -34,10 +27,10 @@ const ToDoScreen = () => {
                         </div>
                     </section>
                 </div>
-                <AddTask onSubmit={addNewTask} />
+                {/* <AddTask onSubmit={addNewTask} /> */}
             </div>
         </>
     );
-}
+};
 
 export default ToDoScreen;
