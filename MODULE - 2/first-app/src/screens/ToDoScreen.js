@@ -22,7 +22,7 @@ const ToDoScreen = () => {
                     <section>
                         <div className="ui cards">
                             {taskList.map((task, index) => (
-                                <Task task={task} key={index} />
+                                <Task task={task} key={task.taskId} />
                             ))}
                         </div>
                     </section>
